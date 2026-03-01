@@ -1,0 +1,228 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Fonts ──────────────────────────────────────────────── */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque[opsz,wdth,wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mona Sans";
+  src: url("/assets/fonts/MonaSans[wdth,wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono[wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Neon Cyberpunk Dark Theme */
+    --background: 0.08 0.01 280;
+    --foreground: 0.95 0.02 280;
+
+    --card: 0.11 0.02 280;
+    --card-foreground: 0.95 0.02 280;
+
+    --popover: 0.13 0.02 280;
+    --popover-foreground: 0.95 0.02 280;
+
+    /* Neon hot pink primary */
+    --primary: 0.68 0.28 340;
+    --primary-foreground: 0.05 0 0;
+
+    /* Electric cyan secondary */
+    --secondary: 0.14 0.03 280;
+    --secondary-foreground: 0.75 0.22 200;
+
+    --muted: 0.14 0.02 280;
+    --muted-foreground: 0.55 0.06 280;
+
+    /* Toxic green accent */
+    --accent: 0.72 0.28 130;
+    --accent-foreground: 0.05 0 0;
+
+    --destructive: 0.65 0.28 27;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.25 0.04 280;
+    --input: 0.18 0.03 280;
+    --ring: 0.68 0.28 340;
+
+    /* Neon chart colors */
+    --chart-1: 0.68 0.28 340;
+    --chart-2: 0.75 0.22 200;
+    --chart-3: 0.72 0.28 130;
+    --chart-4: 0.75 0.25 60;
+    --chart-5: 0.65 0.28 27;
+
+    --sidebar: 0.10 0.02 280;
+    --sidebar-foreground: 0.95 0.02 280;
+    --sidebar-primary: 0.68 0.28 340;
+    --sidebar-primary-foreground: 0.05 0 0;
+    --sidebar-accent: 0.14 0.03 280;
+    --sidebar-accent-foreground: 0.95 0.02 280;
+    --sidebar-border: 0.25 0.04 280;
+    --sidebar-ring: 0.68 0.28 340;
+
+    /* Game-specific custom tokens */
+    --neon-pink: 0.68 0.28 340;
+    --neon-cyan: 0.75 0.22 200;
+    --neon-green: 0.72 0.28 130;
+    --neon-orange: 0.75 0.25 60;
+    --neon-yellow: 0.88 0.22 100;
+    --neon-purple: 0.62 0.26 295;
+    --deep-bg: 0.06 0.01 280;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html, body {
+    @apply bg-background text-foreground;
+    font-family: "Mona Sans", sans-serif;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #root {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+}
+
+/* ── Neon glow utilities ─────────────────────────────────── */
+@layer utilities {
+  .glow-pink {
+    box-shadow: 0 0 12px 2px oklch(0.68 0.28 340 / 0.6),
+                0 0 40px 8px oklch(0.68 0.28 340 / 0.25);
+  }
+  .glow-cyan {
+    box-shadow: 0 0 12px 2px oklch(0.75 0.22 200 / 0.6),
+                0 0 40px 8px oklch(0.75 0.22 200 / 0.25);
+  }
+  .glow-green {
+    box-shadow: 0 0 12px 2px oklch(0.72 0.28 130 / 0.6),
+                0 0 40px 8px oklch(0.72 0.28 130 / 0.25);
+  }
+  .glow-text-pink {
+    text-shadow: 0 0 8px oklch(0.68 0.28 340 / 0.9),
+                 0 0 24px oklch(0.68 0.28 340 / 0.5);
+  }
+  .glow-text-cyan {
+    text-shadow: 0 0 8px oklch(0.75 0.22 200 / 0.9),
+                 0 0 24px oklch(0.75 0.22 200 / 0.5);
+  }
+  .glow-text-green {
+    text-shadow: 0 0 8px oklch(0.72 0.28 130 / 0.9),
+                 0 0 24px oklch(0.72 0.28 130 / 0.5);
+  }
+
+  .scanlines {
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      oklch(0 0 0 / 0.08) 2px,
+      oklch(0 0 0 / 0.08) 4px
+    );
+    pointer-events: none;
+  }
+
+  .neon-border-pink {
+    border: 1px solid oklch(0.68 0.28 340 / 0.5);
+    box-shadow: 0 0 8px oklch(0.68 0.28 340 / 0.3) inset,
+                0 0 12px oklch(0.68 0.28 340 / 0.2);
+  }
+  .neon-border-cyan {
+    border: 1px solid oklch(0.75 0.22 200 / 0.5);
+    box-shadow: 0 0 8px oklch(0.75 0.22 200 / 0.3) inset,
+                0 0 12px oklch(0.75 0.22 200 / 0.2);
+  }
+  .neon-border-green {
+    border: 1px solid oklch(0.72 0.28 130 / 0.5);
+    box-shadow: 0 0 8px oklch(0.72 0.28 130 / 0.3) inset,
+                0 0 12px oklch(0.72 0.28 130 / 0.2);
+  }
+
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: oklch(0.10 0.02 280);
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: oklch(0.68 0.28 340 / 0.5);
+    border-radius: 2px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.68 0.28 340 / 0.8);
+  }
+}
+
+/* Pulse animation for click button */
+@keyframes orb-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 30px 10px oklch(0.68 0.28 340 / 0.5),
+                0 0 80px 30px oklch(0.68 0.28 340 / 0.2),
+                0 0 120px 50px oklch(0.75 0.22 200 / 0.1);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 50px 20px oklch(0.68 0.28 340 / 0.7),
+                0 0 100px 40px oklch(0.68 0.28 340 / 0.3),
+                0 0 160px 70px oklch(0.75 0.22 200 / 0.15);
+    transform: scale(1.03);
+  }
+}
+
+@keyframes orb-click {
+  0% { transform: scale(1); }
+  30% { transform: scale(0.92); }
+  70% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+@keyframes prestige-pulse {
+  0%, 100% { box-shadow: 0 0 20px oklch(0.88 0.22 100 / 0.5); }
+  50% { box-shadow: 0 0 40px 10px oklch(0.88 0.22 100 / 0.8); }
+}
+
+@keyframes neon-flicker {
+  0%, 95%, 100% { opacity: 1; }
+  96% { opacity: 0.6; }
+  98% { opacity: 0.9; }
+}
+
+@keyframes float-up {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-80px) scale(1.5); opacity: 0; }
+}
+
+.orb-pulse-anim {
+  animation: orb-pulse 2.5s ease-in-out infinite;
+}
+.orb-click-anim {
+  animation: orb-click 0.2s ease-out;
+}
+.prestige-pulse-anim {
+  animation: prestige-pulse 1.5s ease-in-out infinite;
+}
+.neon-flicker {
+  animation: neon-flicker 8s linear infinite;
+}
